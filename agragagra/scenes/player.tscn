@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfj7y5argkimi"]
+
+[ext_resource type="Script" uid="uid://jgjqu55761me" path="res://scripts/player.gd" id="1_3vyb7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qhqgy"]
+
+[node name="player" type="CharacterBody3D"]
+collision_mask = 6
+script = ExtResource("1_3vyb7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_g2els")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_qhqgy")
+
+[node name="yaw" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9733993, 0.22911546, 0, -0.22911546, 0.9733993, 0, 0, 0)
+
+[node name="pitch" type="Node3D" parent="yaw"]
+
+[node name="Camera3D" type="Camera3D" parent="yaw/pitch"]
+transform = Transform3D(1, 0, 0, 0, 0.9656723, 0.259763, 0, -0.259763, 0.9656723, 0, 1.3791759, 2.7860975)
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2493353, 0)
+visible = false
+text = "Press \"F\" to play"
