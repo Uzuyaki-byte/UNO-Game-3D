@@ -4,15 +4,18 @@ extends CharacterBody3D
 @onready var pitch: Node3D = $yaw/pitch
 @onready var camera_3d: Camera3D = $"../Camera3D"
 @onready var label_3d: Label3D = $Label3D
+@onready var commutor: Node = $Commutor
 
 var input_dir: Vector2 = Vector2.ZERO
 var motion_dir: Vector3 = Vector3.ZERO
 var walk_speed: float = 10.0
 var jump_speed: float = 35.0
 var gravity: float = 4.8
+
 @export var mouse_locked: bool = false
 @export var near_table: bool = false
 @export var switch_camera: bool = false
+@export var in_main_menu: bool = true
 
 func _process(delta: float) -> void:
 	if mouse_locked:
@@ -26,7 +29,7 @@ func _process(delta: float) -> void:
 		label_3d.rotation.y = yaw.rotation.y
 
 func _physics_process(delta: float) -> void:
-	if mouse_locked and not switch_camera:
+	if mouse_locked and not switch_camera and not in_main_menu:
 		input_dir = Input.get_vector("left", "right", "forward", "backward").normalized()
 		motion_dir = yaw.basis * Vector3(input_dir.x, 0.0, input_dir.y) * walk_speed
 		velocity.x = motion_dir.x
@@ -38,13 +41,13 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 
 func _input(event: InputEvent) -> void:
-	if not switch_camera and Input.is_action_just_pressed("ui_cancel") and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+	if not in_main_menu and not switch_camera and Input.is_action_just_pressed("ui_cancel") and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		mouse_locked = false
-	if not switch_camera and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
+	if not not in_main_menu and not switch_camera and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		mouse_locked = true
-	if not switch_camera and mouse_locked and event is InputEventMouseMotion:
+	if not in_main_menu and not switch_camera and mouse_locked and event is InputEventMouseMotion:
 		yaw.rotate_y(-event.relative.x * 0.01)
 		pitch.rotate_x(-event.relative.y * 0.01)
 		pitch.rotation.x = clamp(pitch.rotation.x, deg_to_rad(-45), deg_to_rad(75))

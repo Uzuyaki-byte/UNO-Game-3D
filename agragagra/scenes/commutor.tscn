@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtl8xshljtojh"]
+
+[ext_resource type="Script" uid="uid://dh11ab3bexk7w" path="res://scripts/commutor.gd" id="1_aiajj"]
+
+[node name="Commutor" type="Node"]
+script = ExtResource("1_aiajj")

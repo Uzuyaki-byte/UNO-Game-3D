@@ -1,0 +1,107 @@
+[gd_scene load_steps=12 format=3 uid="uid://cmutn4dum6k0f"]
+
+[ext_resource type="PackedScene" uid="uid://cmklwfxjp04v2" path="res://models/Room 3.glb" id="1_ekxnf"]
+[ext_resource type="Script" uid="uid://bqk0st2cl4ost" path="res://scripts/main_menu.gd" id="1_rtw2f"]
+[ext_resource type="PackedScene" uid="uid://k4761qqxlx6m" path="res://models/Table Final.glb" id="2_bqqt6"]
+[ext_resource type="Texture2D" uid="uid://c41mdmcas5hlb" path="res://models/play.png" id="3_8ln24"]
+[ext_resource type="Texture2D" uid="uid://du6s12bpkmm5a" path="res://models/Menu.png" id="4_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://dr25uwkngpytu" path="res://models/Quit.png" id="5_oa1go"]
+[ext_resource type="PackedScene" uid="uid://dtl8xshljtojh" path="res://scenes/commutor.tscn" id="7_oa1go"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wu84c"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_8ln24"]
+sky_material = SubResource("ProceduralSkyMaterial_wu84c")
+process_mode = 1
+
+[sub_resource type="Environment" id="Environment_rtw2f"]
+background_mode = 2
+sky = SubResource("Sky_8ln24")
+ambient_light_source = 3
+tonemap_mode = 4
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8ln24"]
+size = Vector3(0.33569336, 0.20288086, 0.50427246)
+
+[node name="main_menu" type="Node3D"]
+script = ExtResource("1_rtw2f")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rtw2f")
+
+[node name="Room 3" parent="." instance=ExtResource("1_ekxnf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.738311, 0, 6.5852375)
+
+[node name="Table Final" parent="." instance=ExtResource("2_bqqt6")]
+transform = Transform3D(-0.005166194, 0, 0.99998665, 0, 1, 0, -0.99998665, 0, -0.005166194, 6.8790274, 0, 3.921637)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.13908, 5.830893, 7.0419426)
+light_energy = 2.729
+light_indirect_energy = 2.504
+light_specular = 0.83
+omni_range = 8.033193
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.20956737, 0, -0.97779423, 0, 1, 0, 0.97779423, 0, 0.20956737, 2.9021263, 2.7350125, 7.8563643)
+light_energy = 2.72
+spot_range = 15.687919
+spot_angle = 67.93882
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.556339, 0.28381556, -0.7809838, 0.07192241, 0.9198884, 0.38552895, 0.82783705, -0.27065504, 0.4913571, 5.156944, 4.5045643, 8.990115)
+fov = 63.55722
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6195083, 3.7599978, 8.906136)
+shape = SubResource("BoxShape3D_8ln24")
+
+[node name="Label3D" type="Label3D" parent="Area3D"]
+transform = Transform3D(0.29764852, 0.5358626, -0.79009885, 0.072649546, 0.8124965, 0.5784218, 0.9519074, -0.22956678, 0.20290837, 6.6371555, 3.7503867, 8.881259)
+
+[node name="Sprite3D" type="Sprite3D" parent="Area3D/Label3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+texture = ExtResource("3_8ln24")
+
+[node name="Area3D2" type="Area3D" parent="."]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6195083, 3.4979541, 8.873704)
+shape = SubResource("BoxShape3D_8ln24")
+
+[node name="Label3D2" type="Label3D" parent="Area3D2"]
+transform = Transform3D(0.29764852, 0.5358626, -0.79009885, 0.072649546, 0.8124965, 0.5784218, 0.9519074, -0.22956678, 0.20290837, 6.6371555, 3.4985642, 8.881259)
+
+[node name="Sprite3D" type="Sprite3D" parent="Area3D2/Label3D2"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+texture = ExtResource("4_rtw2f")
+
+[node name="Area3D" type="Area3D" parent="Area3D2/Label3D2"]
+
+[node name="Area3D3" type="Area3D" parent="."]
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Area3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6195083, 3.226657, 8.863463)
+shape = SubResource("BoxShape3D_8ln24")
+
+[node name="Label3D3" type="Label3D" parent="Area3D3"]
+transform = Transform3D(0.29764852, 0.5358626, -0.79009885, 0.072649546, 0.8124965, 0.5784218, 0.9519074, -0.22956678, 0.20290837, 6.6371555, 3.219512, 8.881259)
+
+[node name="Sprite3D" type="Sprite3D" parent="Area3D3/Label3D3"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+texture = ExtResource("5_oa1go")
+
+[node name="Commutor" parent="." instance=ExtResource("7_oa1go")]
+
+[connection signal="mouse_entered" from="Area3D" to="." method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Area3D" to="." method="_on_area_3d_mouse_exited"]
+[connection signal="mouse_entered" from="Area3D2" to="." method="_on_area_3d_2_mouse_entered"]
+[connection signal="mouse_exited" from="Area3D2" to="." method="_on_area_3d_2_mouse_exited"]
+[connection signal="mouse_entered" from="Area3D3" to="." method="_on_area_3d_3_mouse_entered"]
+[connection signal="mouse_exited" from="Area3D3" to="." method="_on_area_3d_3_mouse_exited"]

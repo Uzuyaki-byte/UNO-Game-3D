@@ -78,6 +78,7 @@ script = ExtResource("4_k0juu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.578581, 4.0912795, 2.5121899)
 light_energy = 5.0
 shadow_enabled = true
+omni_range = 5.918946
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 4
